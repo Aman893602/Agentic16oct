@@ -7,7 +7,7 @@ const EMPTY_STATES = {
   completed: { icon: 'listChecks', title: 'Nothing completed yet', text: 'Tasks you complete will show up here.' },
 };
 
-function TodoList({ todos, filter, onToggle, onDelete }) {
+function TodoList({ todos, filter, onToggle, onEdit, onDelete }) {
   if (todos.length === 0) {
     const emptyState = EMPTY_STATES[filter];
     return (
@@ -24,7 +24,7 @@ function TodoList({ todos, filter, onToggle, onDelete }) {
   return (
     <ul className="todo-list">
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} onToggle={onToggle} onDelete={onDelete} />
+        <TodoItem key={todo.id} todo={todo} onToggle={onToggle} onEdit={onEdit} onDelete={onDelete} />
       ))}
     </ul>
   );

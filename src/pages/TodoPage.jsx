@@ -53,6 +53,10 @@ function TodoPage({ userEmail, onLogout }) {
     );
   }
 
+  function editTodo(id, newText) {
+    setTodos((current) => current.map((todo) => (todo.id === id ? { ...todo, text: newText } : todo)));
+  }
+
   function deleteTodo(id) {
     setTodos((current) => current.filter((todo) => todo.id !== id));
   }
@@ -116,7 +120,13 @@ function TodoPage({ userEmail, onLogout }) {
             />
           </div>
 
-          <TodoList todos={visibleTodos} filter={filter} onToggle={toggleTodo} onDelete={deleteTodo} />
+          <TodoList
+            todos={visibleTodos}
+            filter={filter}
+            onToggle={toggleTodo}
+            onEdit={editTodo}
+            onDelete={deleteTodo}
+          />
 
           <footer className="panel__footer">
             <span>
