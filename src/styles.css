@@ -768,7 +768,7 @@ button {
 .todo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 12px;
   border-radius: var(--radius);
   transition: background-color 0.15s;
@@ -781,15 +781,6 @@ button {
 
 .todo:hover {
   background: var(--surface-subtle);
-}
-
-.todo__main {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex: 1;
-  min-width: 0;
-  cursor: pointer;
 }
 
 .checkbox-wrap {
@@ -819,7 +810,7 @@ button {
   transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
-.todo__main:hover .checkbox {
+.checkbox-wrap:hover .checkbox {
   border-color: var(--primary);
 }
 
@@ -837,7 +828,31 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex: 1;
   min-width: 0;
+  cursor: text;
+}
+
+.todo--editing,
+.todo--editing:hover {
+  background: var(--primary-soft);
+}
+
+.todo__edit-input {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  box-shadow: 0 0 0 4px var(--primary-ring);
+}
+
+.todo__edit-input:focus {
+  outline: none;
 }
 
 .todo__text {
@@ -857,18 +872,21 @@ button {
   text-decoration: line-through;
 }
 
-.todo__delete {
+.todo__actions {
+  display: flex;
+  gap: 2px;
   opacity: 0;
+  transition: opacity 0.15s;
 }
 
-.todo:hover .todo__delete,
-.todo__delete:focus-visible {
+.todo:hover .todo__actions,
+.todo__actions:focus-within {
   opacity: 1;
 }
 
-/* Touch screens have no hover, so always show the delete button */
+/* Touch screens have no hover, so always show the action buttons */
 @media (hover: none) {
-  .todo__delete {
+  .todo__actions {
     opacity: 1;
   }
 }
